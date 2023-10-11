@@ -1,0 +1,15 @@
+/home/hummusbird/projects/totp/bin/Debug/net7.0/totp
+/home/hummusbird/projects/totp/bin/Debug/net7.0/totp.deps.json
+/home/hummusbird/projects/totp/bin/Debug/net7.0/totp.runtimeconfig.json
+/home/hummusbird/projects/totp/bin/Debug/net7.0/totp.dll
+/home/hummusbird/projects/totp/bin/Debug/net7.0/totp.pdb
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.csproj.AssemblyReference.cache
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.GeneratedMSBuildEditorConfig.editorconfig
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.AssemblyInfoInputs.cache
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.AssemblyInfo.cs
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.csproj.CoreCompileInputs.cache
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.dll
+/home/hummusbird/projects/totp/obj/Debug/net7.0/refint/totp.dll
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.pdb
+/home/hummusbird/projects/totp/obj/Debug/net7.0/totp.genruntimeconfig.cache
+/home/hummusbird/projects/totp/obj/Debug/net7.0/ref/totp.dll
