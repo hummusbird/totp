@@ -10,7 +10,7 @@ class Program
 
         while (true)
         {
-            long unix = 1111111109;//DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            long unix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             Console.WriteLine("unix: " + unix);
             Console.WriteLine("time: " + DateTimeOffset.FromUnixTimeSeconds(unix).DateTime);
             Console.WriteLine("step: " + DateTimeOffset.FromUnixTimeSeconds((unix / 30) * 30).DateTime);
