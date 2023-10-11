@@ -6,12 +6,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        //string secret = "12345678901234567890"; // HOTP
-        string secret = "3132333435363738393031323334353637383930"; // TOTP
+        string secret = "12345678901234567890";
 
         while (true)
         {
-            long unix = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            long unix = 1111111109;//DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             Console.WriteLine("unix: " + unix);
             Console.WriteLine("time: " + DateTimeOffset.FromUnixTimeSeconds(unix).DateTime);
             Console.WriteLine("step: " + DateTimeOffset.FromUnixTimeSeconds((unix / 30) * 30).DateTime);
@@ -29,7 +28,7 @@ class Program
         byte[] msg = BitConverter.GetBytes(time); // TOTP
         if (BitConverter.IsLittleEndian) { Array.Reverse(msg); }
 
-        byte[] key = GetBytesFromByteString(secret).ToArray();
+        byte[] key = Encoding.ASCII.GetBytes(secret);
         //if (BitConverter.IsLittleEndian) { Array.Reverse(key); }
 
         HMACSHA1 hmac_sha = new HMACSHA1(key);
