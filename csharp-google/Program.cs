@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
-namespace totp;
+namespace csharp_google;
 
 class Program
 {
