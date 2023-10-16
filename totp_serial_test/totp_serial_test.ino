@@ -1,4 +1,3 @@
-#include <Keyboard.h>
 #include "TOTP.h"
 #include "swRTC.h"
 
@@ -9,12 +8,11 @@ swRTC rtc;
 char code[7];
 
 void setup() {
-  Keyboard.begin();
   Serial.begin(9600);
   rtc.stopRTC();
 
-  rtc.setDate(11, 10, 2023);
-  rtc.setTime(11, 19, 0);
+  rtc.setDate(16, 10, 2023);
+  rtc.setTime(21, 54, 0);
 
   rtc.startRTC();
 }
@@ -31,12 +29,6 @@ void loop() {
   if (strcmp(code, newCode) != 0) {
     strcpy(code, newCode);
     Serial.println(code);
-    Keyboard.write(code[0]);
-    Keyboard.write(code[1]);
-    Keyboard.write(code[2]);
-    Keyboard.write(code[3]);
-    Keyboard.write(code[4]);
-    Keyboard.write(code[5]);
   }
 
   delay(1000);
