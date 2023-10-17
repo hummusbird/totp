@@ -32,8 +32,8 @@ char code[7];
 // BUTTON PREP
 const int buttonPin = 7;
 int pageNum = 0;
-int buttonState;
-int lastState;
+int buttonState;     // current button state
+int lastState;       // last button state
 
 void setup() {
   RTC.begin();
@@ -62,6 +62,12 @@ void loop() {
     updateDisplay = 1;
   }
 
+  int barInt = 30 - (int)(TIME % 30);
+
+  if (barInt == 22 || barInt == 15 || barInt == 7) {
+    updateDisplay = 1;
+  }
+
   // Serial.print("UNIX: ");
   // Serial.println(TIME);
   // Serial.print("CODE: ");
@@ -81,6 +87,11 @@ void loop() {
     u8g2.drawStr(0, 0, totp_names[pageNum]);
     u8g2.setFont(u8g2_font_fur20_tn);
     u8g2.drawStr(0, 10, newCode);
+
+    if (30 - (int)(TIME % 30) > 22) { u8g2.drawBox(110, 15, 16, 3); };
+    if (30 - (int)(TIME % 30) > 15) { u8g2.drawBox(110, 21, 16, 3); };
+    if (30 - (int)(TIME % 30) > 7) { u8g2.drawBox(110, 27, 16, 3); };
+
     u8g2.sendBuffer();
   }
 
