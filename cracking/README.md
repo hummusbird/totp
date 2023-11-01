@@ -20,31 +20,24 @@ if collisions occur, just run a third token through the results of 2.pot
 
 ```
 // generate first potfile (single hash pair used, 10 digits in this example)
-
 hashcat -m18100 -a3 -o 1.pot hash_1.hash "?d?d?d?d?d?d?d?d?d?d" --keep-guessing -n1 -T1 --force
 
 // take secrets, base32 decode, wrap newline, save to new file
-
 cut -d: -f3 1.pot | base32 -d | fold -w 10 > 1_wordlist.txt
 
 // run second hash using wordlist
-
 hashcat -m18100 -a0 -o 2.pot hash_2.hash 1_wordlist.txt --keep-guessing -n1 -T1 --force
 
 // decode b32 to secret (if hash exists)
-
 cut -d: -f3 2.pot | base32 -d >> secret.txt
-
 ```
 
 this method is simpler but must more computationally expensive:
 
 ```
 // generate potfile (any amount of pairs in the hash file, 10 digits in this example)
-
 hashcat -m18100 -a3 -o totp.pot hashes.hash"?d?d?d?d?d?d?d?d?d?d" --keep-guessing -n1 -T1 --force
 
 // find matches in pot
-
 cut -d: -f3 totp.pot | sort | uniq -c | sort -nr | head 
 ```
