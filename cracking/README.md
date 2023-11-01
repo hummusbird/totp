@@ -1,4 +1,4 @@
-#totp cracking
+# totp cracking
 
 cracking TOTP codes is the same as any other secret / msg pair
 
