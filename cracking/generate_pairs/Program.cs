@@ -6,11 +6,11 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Enter secret: ");
+        Console.Write("Enter secret: ");
         string secret = Console.ReadLine();
-        Console.WriteLine("Enter starting timestamp: ");
+        Console.Write("Enter starting timestamp: ");
         long unix = long.Parse(Console.ReadLine());
-        Console.WriteLine("Enter amount of pairs: ");
+        Console.Write("Enter amount of pairs: ");
         long pairs = long.Parse(Console.ReadLine());
 
         for (int i=0; i < pairs; i++)
@@ -21,6 +21,8 @@ class Program
 
             File.AppendAllText("totp_pairs.hash", output + Environment.NewLine);
         }
+
+        Console.WriteLine("Written pairs to 'totp_pairs.hash'");
     }
 
     static string generateTOTP(string secret, long time, int digits)

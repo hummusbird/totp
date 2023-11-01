@@ -13,7 +13,7 @@ this is a simple c# program based on the c# totp implementation, designed to gen
 
 ## example
  
-### (so i remember)
+### (so i remember)
 
 this example is faster than generating hashes for all tokens then checking for dupes.
 if collisions occur, just run a third token through the results of 2.pot
@@ -39,5 +39,5 @@ this method is simpler but must more computationally expensive:
 hashcat -m18100 -a3 -o totp.pot hashes.hash"?d?d?d?d?d?d?d?d?d?d" --keep-guessing -n1 -T1 --force
 
 // find matches in pot
-cut -d: -f3 totp.pot | sort | uniq -c | sort -nr | head 
+cut -d: -f3 totp.pot | sort | uniq -c | sort -nr | head -n1 
 ```
