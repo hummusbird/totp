@@ -37,6 +37,7 @@ class Program
         int offset = hash[^1] & 0x0f;
         int bin_code = (hash[offset] & 0x7f) << 24
                | (hash[offset + 1] & 0xff) << 16
+               | (hash[offset + 2] & 0xff) << 8
                | (hash[offset + 3] & 0xff);
 
         string result = (bin_code % Math.Pow(10, digits)).ToString(); // trim to N digits
