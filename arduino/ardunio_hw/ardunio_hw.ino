@@ -24,18 +24,25 @@ void drawCountdownBars(long TIME) {
 }
 
 // TOTP PREP
-static const int totp_count = 3;
+static const int totp_count = 6;
 char totp_names[totp_count][10] = { "12345",
                                     "09876",
+                                    "555555",
+                                    "666666",
+                                    "777777",
                                     "ABCDEF" };
 
 TOTP totps[totp_count] = { TOTP("12345678901234567890", 20, 30),
                            TOTP("09876543210987654321", 20, 30),
+                           TOTP("55555555555555555555", 20, 30),
+                           TOTP("66666666666666666666", 20, 30),
+                           TOTP("77777777777777777777", 20, 30),
                            TOTP("ABCDEFGHIJABCDEFGHIJ", 20, 30) };
 char code[7];
 
 // BUTTON PREP
-const int buttonPin = 7;
+const int CWPin = 3;
+const int CCWPin = 2;
 int pageNum = 0;
 int buttonState;  // current button state
 int lastState;    // last button state
@@ -45,7 +52,8 @@ long lastMillis;
 void setup() {
   RTC.begin();
   Serial.begin(9600);
-  pinMode(buttonPin, INPUT);
+  pinMode(CWPin, INPUT_PULLUP);
+  pinMode(CCWPin, INPUT_PULLUP);
   u8g2.begin();
   u8g2_prepare();
 }
@@ -53,12 +61,18 @@ void setup() {
 void loop() {
   int updateDisplay = 0;
   int updateBar = 0;
-  int buttonState = digitalRead(buttonPin);
+  int buttonState = digitalRead(CWPin);
 
   if (buttonState == HIGH && lastState != buttonState) {  // update display if the button has been pressed
-    pageNum++;
+    if (digitalRead(CCWPin) == HIGH) {
+      pageNum--;
+    } else {
+      pageNum++;
+    }
+
     updateDisplay = 1;
     if (pageNum > totp_count - 1) { pageNum = 0; }
+    if (pageNum < 0) { pageNum = totp_count - 1; }
   }
 
   lastState = buttonState;
@@ -81,7 +95,7 @@ void loop() {
   // Serial.print("CODE: ");
   // Serial.println(newCode);
   // Serial.println("=======================");
-  
+
   // u8g2.drawStr(115, 10, String(30 - (int)(TIME % 30)).c_str());
 
   if (updateDisplay == 1) {
